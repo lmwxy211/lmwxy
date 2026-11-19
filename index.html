@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173a6b">
+  <meta name="description" content="KADA 大兴机场拼装模型：探索六条完整指廊，打开屋顶、查看内部、分解结构。">
+  <meta property="og:title" content="KADA · 大兴机场六指廊探索">
+  <meta property="og:description" content="旋转一座机场，打开它的内部。六指廊拼装模型互动展示。">
+  <title>KADA · 大兴机场六指廊探索</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="boot.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="brand-logo" aria-label="KADA">KAD<i>A</i></span><span class="brand-rule"></span><div><strong>大兴机场 · 六指廊探索</strong><small>BUILD · CLICK · EXPLORE</small></div></div>
+    <span class="edition">PKX–01 <i>交互展示</i></span>
+  </header>
+  <main>
+    <section class="stage" aria-label="机场三维模型">
+      <div id="poster" aria-label="正在加载六条指廊三维模型"></div>
+      <canvas id="scene" aria-label="单指拖动旋转，双指缩放或平移机场模型"></canvas>
+      <div class="state-caption"><span class="eyebrow">MEGASTRUCTURE / 01</span><h1 id="caption">一座机场，六种探索方向。</h1><p id="captionSub">六条完整指廊 · A–F 分区 · 七组可拆屋顶</p></div>
+      <div class="loading" id="loading" role="status"><span class="spinner"></span><span id="loadText">正在搭建机场…</span></div>
+      <div class="viewtools"><button id="top" aria-label="切换俯视">俯视</button><button id="home">复位</button><button id="night">夜景</button></div>
+      <p class="hint" id="gestureHint">单指旋转 · 双指缩放 / 平移</p>
+      <span class="scale"><b>800 mm</b> 设计翼展</span>
+      <div class="fallback" id="fallback" hidden><p id="fallbackText">当前环境暂时无法显示三维，可切换查看效果图。</p><button id="retry">重新加载三维</button></div>
+      <noscript><p class="noscript">请开启浏览器 JavaScript 查看三维交互，当前显示模型效果图。</p></noscript>
+    </section>
+    <aside class="side" aria-label="探索控制">
+      <nav class="toolbar" aria-label="展示模式"><button data-mode="closed" class="active" aria-pressed="true">完整外观</button><button data-mode="open" aria-pressed="false">打开屋顶</button><button data-mode="exploded" aria-pressed="false">结构分解</button><button data-mode="assembly" aria-pressed="false">拼装顺序</button></nav>
+      <div class="panel-content">
+        <div class="section compact"><div class="row"><label for="explode">分解距离</label><strong id="explValue">0%</strong></div><input id="explode" type="range" min="0" max="100" value="0" aria-label="分解距离"><div class="steps" id="steps"><div class="row"><label for="stage">拼装阶段</label><strong id="stageName">1 / 底座</strong></div><input id="stage" type="range" min="1" max="5" value="1" aria-label="拼装阶段"></div><div class="toggles"><label class="check"><input type="checkbox" id="roof" checked><span>显示屋顶</span></label><label class="check"><input type="checkbox" id="route" checked><span>探索路线</span></label></div></div>
+        <div class="section"><div class="section-title"><h2>按分区查看</h2><span>再次点选，恢复全部</span></div><div class="chips" role="group" aria-label="指廊分区"><button data-part="A" aria-pressed="false">A</button><button data-part="B" aria-pressed="false">B</button><button data-part="C" aria-pressed="false">C</button><button data-part="D" aria-pressed="false">D</button><button data-part="E" aria-pressed="false">E</button><button data-part="F" aria-pressed="false">F</button><button data-part="CORE" aria-pressed="false">大厅</button></div></div>
+        <div class="section part-info" aria-live="polite"><span class="eyebrow">LOOK INSIDE</span><h2 id="partTitle">打开机场，看见结构。</h2><p id="partDesc">A–F 六条完整指廊均可单独查看。打开屋顶，探索候机座椅、登机廊桥与中央大厅。</p></div>
+        <details class="section"><summary>材料与设计说明</summary><div class="material"><i></i><p><b>ABS / 主体与铜金屋顶</b><br>分段曲面、边框、支撑和底座的候选材料。</p></div><div class="material glass"><i></i><p><b>MABS / 透光构件</b><br>中央天窗、椭圆窗与立面的候选材料。</p></div><p class="status">本展示为结构设计原型，内部功能为简化示意。连接尺寸和积木兼容性仍需打样验证。</p></details>
+        <div class="section share"><button id="shareLink">复制链接，发到微信</button><small id="shareStatus" role="status">手机上可通过微信右上角菜单转发给朋友。</small></div>
+        <div class="section desktop-export"><button id="export">导出当前状态 GLB</button></div>
+        <p class="footer-note">KADA / Hear It Build. <span>六指廊修正版 02</span></p>
+      </div>
+    </aside>
+  </main>
+  <div class="copy-modal" id="copyModal" hidden><div role="dialog" aria-modal="true" aria-labelledby="copyTitle"><h2 id="copyTitle">长按复制链接</h2><input id="copyUrl" readonly aria-label="网页链接"><p>复制后粘贴到微信，即可发给老师和同学。</p><button id="closeCopy">完成</button></div></div>
+</body>
+</html>
